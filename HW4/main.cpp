@@ -2,7 +2,10 @@
 #include <string>
 #include "greeting.h"
 
-using namespace std;
+using std::cout;
+using std::cin;
+using std::getline;
+using std::endl;
 
 int main()
 {

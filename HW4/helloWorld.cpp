@@ -2,12 +2,7 @@
 #include <iostream>
 #include <string>
 
-// using statements
-using std::cout;
-using std::cin;
-using std::endl;
-using std::string;
-using std::getline;
+using namespace std;
 
 int main()
 {

@@ -1,5 +1,5 @@
 #include "greeting.h"
-
+#include <string>
 Greeting::Greeting()
 {
 
@@ -16,3 +16,4 @@ string Greeting::getName()
 {
     return name;
 }
+
