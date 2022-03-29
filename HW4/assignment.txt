@@ -1,6 +1,0 @@
-Steps:
-1. Record compiling and running single c++ file
-2. Record running make command for multiple c++ files
-3. Record running python file
-
-
