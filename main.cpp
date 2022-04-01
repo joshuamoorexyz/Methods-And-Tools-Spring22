@@ -1,6 +1,258 @@
 #include <iostream>
 
 
+class Account{
+
+private:
+int UserID;
+string Password;
+string Name;
+string Email;
+//OrderHistory;
+string ShippingInfo;
+String PaymentInfo;
+
+public:
+//make new account
+void account(UserID,Password,Name,Email,ShippingInfo,PaymentInfo){
+
+
+	UserID=UserID;
+	Password=Password;
+	Name=Name;
+	Email=Email;
+	ShippingInfo=ShippingInfo;
+	PaymentInfo=PaymentInfo;
+
+
+
+
+}
+
+
+//login
+bool login(string x,string y){
+
+if (x==UserID && y==Password){
+
+	return true;
+}
+
+else 
+return false;
+}
+
+
+
+//Edit UserID
+void editID(int x){
+
+	UserID=x;
+}
+
+
+
+
+//Edit Password
+void editPassword(string x){
+
+	Password=x;
+}
+
+
+//Edit Name and Email
+void editNameEmail(string x,string y){
+
+	Name=x;
+	Email=y;
+}
+
+
+//Update ShippingINFO
+
+void editShipping(string x){
+
+	ShippingInfo=x;
+}
+
+
+
+//Update PaymentINFO
+
+void editPayment(string x){
+
+	PaymentInfo=x;
+}
+
+
+
+//view orderhistory // update order history
+
+
+
+//deconstructor
+
+// ~void account(UserID,Password,Name,Email,ShippingInfo,PaymentInfo){
+
+
+// 	UserID=UserID;
+// 	Password=Password;
+// 	Name=Name;
+// 	Email=Email;
+// 	ShippingInfo=ShippingInfo;
+// 	PaymentInfo=PaymentInfo;
+
+
+
+
+// }
+
+
+
+
+}
+
+
+class Inventory{
+
+
+	private:
+
+	string Item;
+	string Category;
+	float price;
+	int stock;
+
+
+
+	public:
+
+//add item
+void addItem(string a,string b, float c,int d){
+
+Item=a;
+Category=b;
+price=c;
+stock=d;
+
+
+
+}
+
+
+//delete item
+
+// void addItem(string a,string b, float c,int d){
+
+// Item=a;
+// Category=b;
+// price=c;
+// stock=d;
+
+
+
+// }
+
+//check price
+
+float checkPrice(string a){
+	if(a=Item){
+		return price;
+	}
+	return 0.0;
+}
+
+
+//edit stock
+void editStock(int x){
+	Stock=x;
+}
+
+
+//check stock
+
+int checkStock(string a){
+
+	if(a=Item){
+		return stock;
+	}
+	stock=0;
+	return stock;
+}
+
+
+
+//set category
+
+void setCategory(int x){
+
+
+	Category=x;
+}
+
+
+
+
+
+}
+
+
+
+
+
+
+// class ShoppingCart{
+
+
+// 	private:
+// 	string Items[];
+// 	float total;
+// 	public:
+
+// 	void viewallinCart(){
+
+// 		//loop and print each item name
+// 		for(int i=0;i<Items.size();i++){
+// 			std::cout<<Items[0];
+// 			std::cout<<"\n";
+
+
+
+
+// 		}
+// 	}
+
+// 	void addItemFromCategory(int x,string y){
+
+
+
+
+// 	}
+
+
+
+// }
+
+
+// class ItemCategories{
+
+
+// 	private:
+
+
+
+// 	public:
+
+
+
+
+
+// }
+
+
+
+
+
 int main(int argc, char const *argv[])
 {
 bool loggedin=false;
