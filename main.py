@@ -5,6 +5,7 @@
 from collections import UserDict
 import mysql.connector
 import sys
+from getpass import getpass
 
 #driver code
 # # Connect to server
@@ -230,28 +231,34 @@ while(True):
         #user login page
         if(choice==1):
             print("--------------------------------------------------------")
+        try = 3;
+            while(try >3):
+                try = try-1
+                username = input("Enter your UserID: ")
+                #print("User Login")
+                #print("\n\n Enter UserID:")
+                #username=input()
 
-            print("User Login")
-            print("\n\n Enter UserID:")
-            username=input()
+                #check input
+                userpassword = getpass("Enter the password: ")
+                #print("\n\n password")
+                #userpassword=input()
 
-            #check input
+                #check input
 
-            print("\n\n password")
-            userpassword=input()
+                #check database to see if username and password are a match
+                result=Account.login(username,userpassword)
+                if(result==True):
+                    print("\nLogged in ..")
+                    loggedin=True
 
-            #check input
+                if(result==False):
+                    print("\n UserID Or Pwd incorrect ...")
+                    print("You have %d valid attempts left" %(try))
+                    loggedin=False
+             while(try=0):
+                exit()
 
-            #check database to see if username and password are a match
-            result=Account.login(username,userpassword)
-            if(result==True):
-                print("\nLogged in ..")
-                loggedin=True
-
-            if(result==False):
-                print("\n UserID Or Pwd incorrect ...")
-                loggedin=False
-           
 
 #create account page
         if(choice==2):
