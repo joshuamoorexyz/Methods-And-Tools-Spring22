@@ -126,8 +126,9 @@ class Inventory:
     Stock = 0
 
     def AddItem(item, Category, Price, Stock):
+        
 
-    def delete_item():
+    def Delete_item():
 
     def check_price():
     
@@ -136,7 +137,7 @@ class Inventory:
     def check_stock():
     
     def set_category():
-        
+
 
 
 
