@@ -121,12 +121,12 @@ class Inventory:
     float Price = 0.00
     int Stock = 0
 
-    AddItem()
-    DeleteItem()
-    CheckPrice()
-    EditStock()
-    CheckStock()
-    SetCategory(
+    AddItem():
+    DeleteItem():
+    CheckPrice():
+    EditStock():
+    CheckStock():
+    SetCategory():
 
     
 
