@@ -66,18 +66,18 @@ class Account:
 
 # print(mycursor.rowcount, "record(s) inserted.")
 
-    def loginfunc(x,y):
+def loginfunc(x,y):
 
 
 
-        cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
-        # Fetch one record and return result
-        account = cur.fetchone()
-        if account:
-            return True
-            # Redirect to home page
-        else:
-            return False
+    cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
+    # Fetch one record and return result
+    account = cur.fetchone()
+    if account:
+        return True
+    # Redirect to home page
+    else:
+        return False
        
 
 
@@ -115,8 +115,11 @@ class Account:
 #     Item="Nameofitem"
 #     Price=0.00
 #     Stock=0
-
-
+ 
+    
+class Inventory:
+    int 
+    
 #     def additem(a,b,c,d):
 #         Item=a
 #         Category=b
@@ -442,7 +445,7 @@ while(True):
         if(choice==3):
             print("\n Account Information")
 
-            rint("\n\n1. Update Shipping Info")
+            print("\n\n1. Update Shipping Info")
             print("\n2. Update Payment Info")
             print("\n3. Edit Account")
             print("\n4. Delete Account")
