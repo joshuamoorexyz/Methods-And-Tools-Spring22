@@ -180,30 +180,40 @@ class Account:
 
 
 
-# class Inventory:
-#     item = 0
-#     Category = ""
-#     Price = 0.00
-#     Stock = 0
-
-#  def AddItem(item, Category, Price, Stock):
+class Inventory:
+     item = 0
+     Category = ""
+     Price = 0.00
+     Stock = 0
 
 
-# def Delete_item():
-# def AddItem(item, Category, Price, Stock):
-
-#     def delete_item():
-
-#     def check_price():
-
-#     def edit_stock():
-
-#     def check_stock():
 
 
-#     def set_category():
+ def Delete_item():
+ def AddItem(item, Category, Price, Stock):
+     query = 'INSERT INTO AddItem (item,Category,Price,Stock) VALUES (%s, %s, %s, %s)'
+     val = (item, Category, Price, Stoock)
+     cur.execute(query,val)
+     account =cur.fetchone()
+     if Additem:
+         cnx.commit()
+         print(cur.rowcount, "record(s) inserted.")
+         return True
+     else:
+         return False
 
-#     def set_category():
+     def delete_item():
+
+     def check_price():
+
+     def edit_stock():
+
+     def check_stock():
+
+
+     def set_category():
+
+     def set_category():
 
 
 
