@@ -137,25 +137,26 @@ class Inventory:
           print("\n")          
 
 class ShoppingCart:    
-    def AddItem(item):
-        Inventory.GetItem(item)
+    def AddItem():
+
 
 
         #check that the item has more than zero stock associated in the Inventory table
-        cur.execute('SELECT Stock FROM methodsnew.Inventory WHERE Itemid= %s',(item))
-        stock=cur.fetchone()
-        if stock >0:
+        #cur.execute('SELECT Stock FROM methodsnew.Inventory WHERE Itemid= %s',(item))
+        #stock=cur.fetchone()
+        #if stock >0:
         #take item from Inventory table and add it to ShoppingCart table
-        
-            cur.execute('INSERT INTO methodsnew.ShoppingCart (Itemid,Price,Category) SELECT Itemid,Price,Stock FROM methodsnew.Inventory WHERE Itemid= %s',(item))
+        itemid=str(input())
+        print(itemid)
+        cur.execute('INSERT INTO methodsnew.ShoppingCart (Itemid,Price,Category) SELECT Itemid,Price,Stock FROM methodsnew.Inventory WHERE Itemid= {itemid}')
         # Fetch one record and return result
-            account = cur.fetchone()
-            if account:
-                return True
-            # Redirect to home page
+        #     account = cur.fetchone()
+        #     if account:
+        #         return True
+        #     # Redirect to home page
           
-        else:
-            return False
+        # else:
+        #     return False
         #check that item has > 0 stock
 
         #if not then print a statement and dont add
@@ -407,9 +408,9 @@ while(True):
                 #     print(x)
                 print("\nWhich item id to add:")
 
-                itemid=int(input())
+          
 
-                ShoppingCart.AddItem(itemid)
+                ShoppingCart.AddItem()
 
                 
             if(choice1==2):
