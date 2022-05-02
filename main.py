@@ -1,3 +1,7 @@
+#Methods and tools Group assignment
+#main menu program
+
+
 import mysql.connector
 import sys
 
@@ -13,8 +17,8 @@ import sys
 cnx = mysql.connector.connect(
     host="127.0.0.1",
     port=3306,
-    user="root",
-    password="",
+    user="joshuamoorexyz",
+    password="password1",
     db="mydb")
 
 print(cnx)
@@ -54,7 +58,7 @@ class Account:
             return False
 
 
-# execute the query with their record value
+#             # execute the query with their record value
 # query = 'INSERT INTO MOVIE (id, name, year) VALUES (%s, %s, %s)'
 # val = (7, "Merlin", 2001)
 
@@ -115,20 +119,7 @@ class Account:
 #     Item="Nameofitem"
 #     Price=0.00
 #     Stock=0
-class Inventory:
-    int item = 0
-    string Category = ""
-    float Price = 0.00
-    int Stock = 0
 
-    AddItem():
-    DeleteItem():
-    CheckPrice():
-    EditStock():
-    CheckStock():
-    SetCategory():
-
-    
 
 #     def additem(a,b,c,d):
 #         Item=a
@@ -186,6 +177,7 @@ while(True):
         print("\n1. Login")
         print("\n2. Create Account")
         print("\n3. Exit Program")
+
         print("\n\n Enter Choice:")
         choice=int(input())
 
@@ -362,7 +354,7 @@ while(True):
             print("stuff")
 
 
-        if(choice1==2):
+        if(chocie1==2):
             print("--------------------------------------------------------")
 
             print("\nGarden")
@@ -398,7 +390,7 @@ while(True):
 
 
 
-        if(choice1==3):
+        if(chocie1==3):
             print("--------------------------------------------------------")
 
             print("\nHealth")
@@ -439,7 +431,7 @@ while(True):
             print("\n3. Checkout Items in Cart")
 
             print("\n\nEnter Choice:")
-            choice1=int(input(choice1))
+            choice1=int(input(chooice1))
 
 
             #check input
@@ -454,13 +446,13 @@ while(True):
         if(choice==3):
             print("\n Account Information")
 
-            print("\n\n1. Update Shipping Info")
+            rint("\n\n1. Update Shipping Info")
             print("\n2. Update Payment Info")
             print("\n3. Edit Account")
             print("\n4. Delete Account")
 
             print("\n\nEnter Choice:")
-            choice1=int(input(choice1))
+            choice1=int(input(chooice1))
 
 
             #check input
