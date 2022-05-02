@@ -115,7 +115,20 @@ class Account:
 #     Item="Nameofitem"
 #     Price=0.00
 #     Stock=0
+class Inventory:
+    int item = 0
+    string Category = ""
+    float Price = 0.00
+    int Stock = 0
 
+    AddItem()
+    DeleteItem()
+    CheckPrice()
+    EditStock()
+    CheckStock()
+    SetCategory(
+
+    
 
 #     def additem(a,b,c,d):
 #         Item=a
