@@ -448,7 +448,7 @@ while(True):
             print("\n4. Delete Account")
 
             print("\n\nEnter Choice:")
-            choice1=int(input(cooice1))
+            choice1=int(input(choice1))
 
 
             #check input
