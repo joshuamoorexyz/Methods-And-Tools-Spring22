@@ -191,13 +191,11 @@ class Inventory:
 
  def Delete_item():
  def AddItem(item, Category, Price, Stock):
-     query = 'INSERT INTO AddItem (item,Category,Price,Stock) VALUES (%s, %s, %s, %s)'
+     query = 'INSERT INTO Inventory (item,Category,Price,Stock) VALUES (%s, %s, %s, %s)'
      val = (item, Category, Price, Stoock)
      cur.execute(query,val)
-     account =cur.fetchone()
+     Inventory =cur.fetchone()
      if Additem:
-         cnx.commit()
-         print(cur.rowcount, "record(s) inserted.")
          return True
      else:
          return False
