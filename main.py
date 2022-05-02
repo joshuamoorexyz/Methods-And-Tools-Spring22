@@ -223,6 +223,8 @@ while(True):
         if(choice<1 or choice>3):
             print("Invalid Input")
             exit()
+        if (choice == string):
+             exit()
             
         #user login page
         if(choice==1):
