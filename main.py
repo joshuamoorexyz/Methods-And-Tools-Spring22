@@ -126,7 +126,18 @@ class Inventory:
     Stock = 0
 
     def AddItem(item, Category, Price, Stock):
+
+    def delete_item():
+
+    def check_price():
+    
+    def edit_stock():
+
+    def check_stock():
+    
+    def set_category():
         
+
 
 
 
