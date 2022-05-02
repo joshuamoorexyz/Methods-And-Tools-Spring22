@@ -6,14 +6,7 @@ from collections import UserDict
 import mysql.connector
 import sys
 
-
-
-
 #driver code
-
-
-
-
 # # Connect to server
 cnx = mysql.connector.connect(
     host="127.0.0.1",
@@ -26,22 +19,6 @@ print(cnx)
 
 # Get a cursor
 cur = cnx.cursor()
-
-# Execute a query
-# cur.execute("SELECT * FROM Item")
-# rows=cur.fetchall()
-# for r in rows:
-#     print(r)
-
-
-
-
-
-
-
-
-
-
 
 #classes
 
@@ -77,23 +54,10 @@ class Account:
             return False
 
 
-    def DeleteAccount(Userid,Password,Name,Email,ShippingInfo,PaymentInfo):
+    def DeleteAccount(Userid):
 
-        query = 'INSERT INTO account WHERE Userid = userid (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
-        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
-
-        #push to database
-        cur.execute(query,val)
-
-        account =cur.fetchone()
-        if account:
-            cnx.commit() # # we commit(save) the records to the table
-            print(cur.rowcount, "record(s) inserted.")
-            return True #return true if account created sucessful
-        else:
-            return False
-
-
+        cur.execute('DELETE FROM account WHERE UserId = %s',(Userid))
+        cnx.commit() # # we commit(save) the records to the table
 
 
     def login(x,y):
@@ -103,28 +67,22 @@ class Account:
         # Fetch one record and return result
         account = cur.fetchone()
         if account:
+            ID=x
             return True
             # Redirect to home page
         else:
             return False
 
 
-    def logout(x,y):
-
-
-        query = 'INSERT INTO account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
-        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
-        cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
-        # Fetch one record and return result
-        account = cur.fetchone()
-        if account:
-            return True
-            # Redirect to home page
-        else:
             return False
 
 
-    def AddOrderHistory():
+
+
+
+
+
+    def EditShiipingInfo(Userid):
         query = 'INSERT INTO account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
         val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
         cur.execute('SELECT * FROM account WHERE UserID = %s AND Password = %s', (x, y,))
@@ -136,8 +94,7 @@ class Account:
         else:
             return False
 
-
-    def ViewOrderHistory():
+    def EditPaymentInfo(Userid):
         query = 'INSERT INTO account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
         val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
         cur.execute('SELECT * FROM account WHERE UserID = %s AND Password = %s', (x, y,))
@@ -149,32 +106,6 @@ class Account:
         else:
             return False
 
-    def EditShiipingInfo():
-        query = 'INSERT INTO account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
-        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
-        cur.execute('SELECT * FROM account WHERE UserID = %s AND Password = %s', (x, y,))
-        # Fetch one record and return result
-        account = cur.fetchone()
-        if account:
-            return True
-            # Redirect to home page
-        else:
-            return False
-
-    def EditPaymentInfo():
-        query = 'INSERT INTO account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
-        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
-        cur.execute('SELECT * FROM account WHERE UserID = %s AND Password = %s', (x, y,))
-        # Fetch one record and return result
-        account = cur.fetchone()
-        if account:
-            return True
-            # Redirect to home page
-        else:
-            return False
-
-
- 
     
 class Inventory:
     def printinventoryelec():
@@ -205,75 +136,72 @@ class Inventory:
           print(row)
           print("\n")          
 
+class ShoppingCart:    
+    def AddItem(item):
+        Inventory.GetItem(item)
 
-    # def AddItem(item, Category, Price, Stock):
 
-    # def delete_item():
-
-    # def check_price():
-    
-    # def edit_stock():
-
-    # def check_stock():
-    
-    # def set_category():
+        #check that the item has more than zero stock associated in the Inventory table
+        cur.execute('SELECT Stock FROM methodsnew.Inventory WHERE Itemid= %s',(item))
+        stock=cur.fetchone()
+        if stock >0:
+        #take item from Inventory table and add it to ShoppingCart table
         
+            cur.execute('INSERT INTO methodsnew.ShoppingCart (Itemid,Price,Category) SELECT Itemid,Price,Stock FROM methodsnew.Inventory WHERE Itemid= %s',(item))
+        # Fetch one record and return result
+            account = cur.fetchone()
+            if account:
+                return True
+            # Redirect to home page
+          
+        else:
+            return False
+        #check that item has > 0 stock
+
+        #if not then print a statement and dont add
+
+
+        #add total to totalcart
+
+    def printitems():
+        cur.execute('SELECT * FROM ShoppingCart')
+        result = cur.fetchall()
+  
+# loop through the rows
+        print("\nItems in cart:")
+        print("\n----------------------")
+        print("\n\nItemID, Category, Price, Stock")
+
+        for row in result:
+          print(row)
+          print("\n")          
+
+
+
+    def gettotalforitemsincart():
+        cur.execute('SELECT SUM(Price) FROM ShoppingCart')
+        result=cur.fetchone()
+        return result
+
+
+    def deleteitemfromcart(itemid):
+        cur.execute('delete FROM ShoppingCart WHERE Itemid = %s',(itemid))
 
 
 
 
-
-
-
-
+    def deleteallitemsfromcart():
+        cur.execute('delete * FROM ShoppingCart')
 
 
     
-#     def additem(a,b,c,d):
-#         Item=a
-#         Category=b
-#         Price=c
-#         Stock=d
 
-#     #delete item
-
-
-#     #check price
-
-
-#     #edit stock
-
-
-#     #check stock
-
-
-#     #set category
-
-
-# class ShoppingCart:
-    
-#     total=0.0
-
-
-# # class Categories:
-#     # Electronics()
-#     # Garden()
-#     # Health()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def checkoutitemsincart():
+        print("\nTotal for all items currently in cart")
+        print("\n---------------------------------------------")
+        total=ShoppingCart.gettotalforitemsincart()
+        print("\nTake {total} for the transaction.")
+        ShoppingCart.deleteallitemsfromcart() #delete items from the cart
 
 #main loop for menu driven program
 
@@ -320,10 +248,7 @@ while(True):
             if(result==False):
                 print("\n UserID Or Pwd incorrect ...")
                 loggedin=False
-
-
-
-            
+           
 
 #create account page
         if(choice==2):
@@ -410,58 +335,46 @@ while(True):
 
             print("\n\nEnter Choice:")
             choice1=int(input())
-        print("--------------------------------------------------------")
+            print("--------------------------------------------------------")
 
 
                  #check input
-        if(choice1<1 or choice1>3):
-            print("Invalid Input")
-            exit()     
+            if(choice1<1 or choice1>3):
+                print("Invalid Input")
+                exit()     
 
 
         #category 1
-        if(choice1==1):
-            print("--------------------------------------------------------")
+            if(choice1==1):
+                print("--------------------------------------------------------")
 
-            print("\nElectronics")
+                print("\nElectronics")
 
             #print all items in category Electronics (1)
-            Inventory.printinventoryelec()
+                Inventory.printinventoryelec()
 
 
 
 
 
-        if(choice1==2):
-            print("--------------------------------------------------------")
+            if(choice1==2):
+                print("--------------------------------------------------------")
 
-            print("\nGarden")
-            Inventory.printinventorygarden()
-
-
-
-
-
-        if(choice1==3):
-            print("--------------------------------------------------------")
-
-            print("\nHealth")
-
-
-            print("\n\nEnter Choice:")
-            Inventory.printinventoryhealth()
-
-  
+                print("\nGarden")
+                Inventory.printinventorygarden()
 
 
 
 
 
+            if(choice1==3):
+                print("--------------------------------------------------------")
+
+                print("\nHealth")
 
 
-
-
-
+                print("\n\nEnter Choice:")
+                Inventory.printinventoryhealth()
 
             #cartinformation
 
@@ -487,20 +400,46 @@ while(True):
             if(choice1==1):
                 print("--------------------------------------------------------")
                 #call add item function
+                print("\nenter item id")
+                # item=int(input())
+                # iteminfo=Inventory.GetItem(item)
+                # for x in iteminfo:
+                #     print(x)
+                print("\nWhich item id to add:")
 
+                itemid=int(input())
 
+                ShoppingCart.AddItem(itemid)
+
+                
             if(choice1==2):
                 print("--------------------------------------------------------")
                 #call show items function
 
+
+                print("\mAll items currently in cart:")
+
+                print("\n")
+
+                #call print items function for ShoppingCart
+
+                ShoppingCart.printitems()
+
+
+
+
+
             if(choice1==3):
                 print("--------------------------------------------------------")
                 #call remove item function
+                print("Which itemid do you want to remove?")
+                inputuser=int(input())
+                ShoppingCart.deleteitemfromcart(inputuser)
 
             if(choice1==4):
                 print("--------------------------------------------------------")
                 #call checkout items function
-
+                ShoppingCart.checkoutitemsincart()
 
 
             #account
@@ -524,19 +463,36 @@ while(True):
             if(choice1==1):
                 print("--------------------------------------------------------")
                 #call update shipping info function
-
+                Account.EditShiipingInfo(username)
 
             if(choice1==2):
-                print("--------------------------------------------------------")
+                print("---------------- ----------------------------------------")
                 #call update payment info function
+                Account.EditPaymentInfo(username)
 
             if(choice1==3):
                 print("--------------------------------------------------------")
                 #call edit account function
+                print("\nEnter the following info:")
+                print("\nNew Password:")
+                Password=str(input())
+                print("\nNew Name:")
+                Name=str(input())
+                print("\nNew Email:")
+                Email=str(input())
+                print("\nNew Shipping Info:")
+                ShippingInfo=str(input())
+                print("\nNew Payment Info:")
+                PaymentInfo=str(input())
+
+
+
+                Account.EditAccount(username,Password,Name,Email,ShippingInfo,PaymentInfo)
 
             if(choice1==4):
                 print("--------------------------------------------------------")
                 #call delete account function
+                Account.DeleteAccount(username)
 
 
 
