@@ -8,7 +8,7 @@ import sys
 
 
 #hi josh this is a commit that i am sending you
-
+#this commit is just to the branch
 #driver code
 
 
@@ -178,8 +178,8 @@ class Account:
             return False
 
 
- 
-    
+
+
 # class Inventory:
 #     item = 0
 #     Category = ""
@@ -187,7 +187,7 @@ class Account:
 #     Stock = 0
 
 #  def AddItem(item, Category, Price, Stock):
-        
+
 
 # def Delete_item():
 # def AddItem(item, Category, Price, Stock):
@@ -195,16 +195,15 @@ class Account:
 #     def delete_item():
 
 #     def check_price():
-    
+
 #     def edit_stock():
 
 #     def check_stock():
-    
-    
+
+
 #     def set_category():
 
 #     def set_category():
-        
 
 
 
@@ -215,7 +214,8 @@ class Account:
 
 
 
-    
+
+
 #     def additem(a,b,c,d):
 #         Item=a
 #         Category=b
@@ -238,7 +238,7 @@ class Account:
 
 
 # class ShoppingCart:
-    
+
 #     total=0.0
 
 
@@ -282,7 +282,7 @@ while(True):
         if(choice<1 or choice>3):
             print("Invalid Input")
             exit()
-            
+
         #user login page
         if(choice==1):
             print("--------------------------------------------------------")
@@ -310,14 +310,14 @@ while(True):
 
 
 
-            
+
 
 #create account page
         if(choice==2):
             print("--------------------------------------------------------")
 
             print("\nCreate Account Page")
-            
+
 
             #check input
 
@@ -364,7 +364,7 @@ while(True):
             print("--------------------------------------------------------")
 
             print("\nExiting ...")
-            sys.exit(1)   
+            sys.exit(1)
 
 
 
@@ -376,8 +376,8 @@ while(True):
         print("\nCLI SHOPPING")
         print("\n1. Categories")
         print("\n2. Cart Information")
-        print("\n3. Account")  
-        print("\n4. Exit Program")    
+        print("\n3. Account")
+        print("\n4. Exit Program")
 
 
         print("\n\nEnter Choice:")
@@ -389,7 +389,7 @@ while(True):
         #check input
         if(choice<1 or choice>4):
             print("Invalid Input")
-            exit() 
+            exit()
 
         if(choice==1):
             print("--------------------------------------------------------")
@@ -408,7 +408,7 @@ while(True):
                  #check input
         if(choice1<1 or choice1>3):
             print("Invalid Input")
-            exit()     
+            exit()
 
 
         #category 1
@@ -428,7 +428,7 @@ while(True):
                  #check input
         if(choice2<1 or choice2>3):
             print("Invalid Input")
-            exit()     
+            exit()
 
         if(choice2==1):
             print("--------------------------------------------------------")
@@ -444,7 +444,7 @@ while(True):
 
         if(choice2==3):
             print("--------------------------------------------------------")
-    
+
             #get all stock from database where category is electronics
             print("stuff")
 
@@ -465,7 +465,7 @@ while(True):
                  #check input
         if(choice2<1 or choice2>3):
             print("Invalid Input")
-            exit()     
+            exit()
 
         if(choice2==1):
             print("--------------------------------------------------------")
@@ -500,7 +500,7 @@ while(True):
                  #check input
         if(choice2<1 or choice2>3):
             print("Invalid Input")
-            exit()     
+            exit()
 
         if(choice2==1):
             #select all items where category is Electronics
@@ -532,7 +532,7 @@ while(True):
             #check input
         if(choice1<1 or choice1>3):
             print("Invalid Input")
-            exit()   
+            exit()
 
 
 
@@ -553,6 +553,6 @@ while(True):
             #check input
         if(choice1<1 or choice1>4):
             print("Invalid Input")
-            exit()   
+            exit()
 # Close connection
 cnx.close()
