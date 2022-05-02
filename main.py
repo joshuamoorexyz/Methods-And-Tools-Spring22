@@ -54,7 +54,7 @@ class Account:
             return False
 
 
-#             # execute the query with their record value
+# execute the query with their record value
 # query = 'INSERT INTO MOVIE (id, name, year) VALUES (%s, %s, %s)'
 # val = (7, "Merlin", 2001)
 
@@ -173,7 +173,6 @@ while(True):
         print("\n1. Login")
         print("\n2. Create Account")
         print("\n3. Exit Program")
-
         print("\n\n Enter Choice:")
         choice=int(input())
 
@@ -350,7 +349,7 @@ while(True):
             print("stuff")
 
 
-        if(chocie1==2):
+        if(choice1==2):
             print("--------------------------------------------------------")
 
             print("\nGarden")
@@ -386,7 +385,7 @@ while(True):
 
 
 
-        if(chocie1==3):
+        if(choice1==3):
             print("--------------------------------------------------------")
 
             print("\nHealth")
@@ -405,7 +404,7 @@ while(True):
 
         if(choice2==1):
             #select all items where category is Electronics
-            print("Here data")
+            print("here data")
 
         if(choice2==2):
             #Get all items price where category is Electronics
@@ -413,7 +412,7 @@ while(True):
 
         if(choice2==3):
             #get all stock from database where category is electronics
-            print("Stuff")
+            print("stuff")
 
 
 
@@ -442,7 +441,7 @@ while(True):
         if(choice==3):
             print("\n Account Information")
 
-            rint("\n\n1. Update Shipping Info")
+            print("\n\n1. Update Shipping Info")
             print("\n2. Update Payment Info")
             print("\n3. Edit Account")
             print("\n4. Delete Account")
