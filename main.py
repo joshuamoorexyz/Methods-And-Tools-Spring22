@@ -405,7 +405,7 @@ while(True):
 
         if(choice2==1):
             #select all items where category is Electronics
-            print("here data")
+            print("Here data")
 
         if(choice2==2):
             #Get all items price where category is Electronics
@@ -413,7 +413,7 @@ while(True):
 
         if(choice2==3):
             #get all stock from database where category is electronics
-            print("stuff")
+            print("Stuff")
 
 
 
@@ -427,7 +427,7 @@ while(True):
             print("\n3. Checkout Items in Cart")
 
             print("\n\nEnter Choice:")
-            choice1=int(input(chooice1))
+            choice1=int(input(choice1))
 
 
             #check input
@@ -448,7 +448,7 @@ while(True):
             print("\n4. Delete Account")
 
             print("\n\nEnter Choice:")
-            choice1=int(input(chooice1))
+            choice1=int(input(cooice1))
 
 
             #check input
