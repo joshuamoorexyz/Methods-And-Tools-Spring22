@@ -1,3 +1,5 @@
+from operator import itemgetter
+import string
 import mysql.connector
 import sys
 
@@ -118,7 +120,24 @@ def loginfunc(x,y):
  
     
 class Inventory:
-    int 
+    int item = 0
+    string Category = ""
+    float Price = 0.00
+    int Stock = 0
+
+    AddItem()
+    DeleteItem()
+    CheckPrice()
+    EditStock()
+    CheckStock()
+    SetCategory()
+
+
+
+
+
+
+
     
 #     def additem(a,b,c,d):
 #         Item=a
