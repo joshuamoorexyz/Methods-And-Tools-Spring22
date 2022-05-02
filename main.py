@@ -224,6 +224,8 @@ while(True):
         if(choice<1 or choice>3):
             print("Invalid Input")
             exit()
+        if (choice == string):
+             exit()
             
         #user login page
         if(choice==1):
@@ -401,12 +403,12 @@ while(True):
             if(choice1==1):
                 print("--------------------------------------------------------")
                 #call add item function
-                print("\nenter item id")
+                print("\nEnter item ID")
                 # item=int(input())
                 # iteminfo=Inventory.GetItem(item)
                 # for x in iteminfo:
                 #     print(x)
-                print("\nWhich item id to add:")
+                print("\nWhich item ID to add:")
 
           
 
@@ -418,7 +420,7 @@ while(True):
                 #call show items function
 
 
-                print("\mAll items currently in cart:")
+                print("\mAll items are currently in cart:")
 
                 print("\n")
 
@@ -433,7 +435,7 @@ while(True):
             if(choice1==3):
                 print("--------------------------------------------------------")
                 #call remove item function
-                print("Which itemid do you want to remove?")
+                print("Which itemID do you want to remove?")
                 inputuser=int(input())
                 ShoppingCart.deleteitemfromcart(inputuser)
 
