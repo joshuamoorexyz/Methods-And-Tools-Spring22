@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 from operator import itemgetter
 import string
+=======
+#Methods and tools Group assignment
+#main menu program
+
+
+from collections import UserDict
+>>>>>>> 9b47db5a2c650a382b5ca65f2d17ad90d5b34ff1
 import mysql.connector
 import sys
 
@@ -15,9 +23,9 @@ import sys
 cnx = mysql.connector.connect(
     host="127.0.0.1",
     port=3306,
-    user="root",
-    password="",
-    db="mydb")
+    user="joshuamoorexyz",
+    password="password1",
+    db="methodsnew")
 
 print(cnx)
 
@@ -43,35 +51,68 @@ cur = cnx.cursor()
 #classes
 
 class Account:
-    def __init__(Password,Name,Email,ShippingInfo,PaymentInfo):
- 
 
+    def CreateAccount(Userid,Password,Name,Email,ShippingInfo,PaymentInfo):
+ 
+        query = 'INSERT INTO Account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
+       
         #push to database
-        cur.execute('INSERT INTO Account (Password, Name,Email,ShippingInfo,PaymentInfo) VALUES("sdf","asdf","email","shipi","asdf");')
+        cur.execute(query,val)
 
         account =cur.fetchone()
         if account:
-            return True
+            cnx.commit() # # we commit(save) the records to the table
+            print(cur.rowcount, "record(s) inserted.")
+            return True #return true if account created sucessful
         else:
             return False
 
 
-#             # execute the query with their record value
-# query = 'INSERT INTO MOVIE (id, name, year) VALUES (%s, %s, %s)'
-# val = (7, "Merlin", 2001)
+    def EditAccount(Userid,Password,Name,Email,ShippingInfo,PaymentInfo):
+ 
+        query = 'INSERT INTO Account WHERE Userid = userid (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
+       
+        #push to database
+        cur.execute(query,val)
+
+        account =cur.fetchone()
+        if account:
+            cnx.commit() # # we commit(save) the records to the table
+            print(cur.rowcount, "record(s) inserted.")
+            return True #return true if account created sucessful
+        else:
+            return False
 
 
-# mycursor.execute(query,val)
+    def DeleteAccount(Userid,Password,Name,Email,ShippingInfo,PaymentInfo):
+ 
+        query = 'INSERT INTO Account WHERE Userid = userid (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
+       
+        #push to database
+        cur.execute(query,val)
 
-# # we commit(save) the records to the table
-# conn.commit()
+        account =cur.fetchone()
+        if account:
+            cnx.commit() # # we commit(save) the records to the table
+            print(cur.rowcount, "record(s) inserted.")
+            return True #return true if account created sucessful
+        else:
+            return False
 
-# print(mycursor.rowcount, "record(s) inserted.")
 
+
+<<<<<<< HEAD
 def loginfunc(x,y):
+=======
+>>>>>>> 9b47db5a2c650a382b5ca65f2d17ad90d5b34ff1
+
+    def login(x,y):
 
 
-
+<<<<<<< HEAD
     cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
     # Fetch one record and return result
     account = cur.fetchone()
@@ -80,37 +121,94 @@ def loginfunc(x,y):
     # Redirect to home page
     else:
         return False
+=======
+        query = 'INSERT INTO Account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
+        cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
+        # Fetch one record and return result
+        account = cur.fetchone()
+        if account:
+            return True
+            # Redirect to home page
+        else:
+            return False
+>>>>>>> 9b47db5a2c650a382b5ca65f2d17ad90d5b34ff1
        
 
+    def logout(x,y):
+
+
+        query = 'INSERT INTO Account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
+        cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
+        # Fetch one record and return result
+        account = cur.fetchone()
+        if account:
+            return True
+            # Redirect to home page
+        else:
+            return False
+
+
+    def AddOrderHistory():
+        query = 'INSERT INTO Account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
+        cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
+        # Fetch one record and return result
+        account = cur.fetchone()
+        if account:
+            return True
+            # Redirect to home page
+        else:
+            return False
+
+
+    def ViewOrderHistory():
+        query = 'INSERT INTO Account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
+        cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
+        # Fetch one record and return result
+        account = cur.fetchone()
+        if account:
+            return True
+            # Redirect to home page
+        else:
+            return False
+
+    def EditShiipingInfo():
+        query = 'INSERT INTO Account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
+        cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
+        # Fetch one record and return result
+        account = cur.fetchone()
+        if account:
+            return True
+            # Redirect to home page
+        else:
+            return False
+
+    def EditPaymentInfo():
+        query = 'INSERT INTO Account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
+        cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
+        # Fetch one record and return result
+        account = cur.fetchone()
+        if account:
+            return True
+            # Redirect to home page
+        else:
+            return False
 
 
 
 
 
-#     def editID(x):
-#         cursor.execute('SELECT * FROM accounts WHERE UserID = %s', (x,))
-#         # Fetch one record and return result
-#         account = cursor.fetchone()
-#         if account:
-#             #alter the id
-#         else:
-#             #tell there is no account with that
 
-    
 
-#     def editPassword():
-#     def editNameandEmail(x,y):
-#         Name=x
-#         Email=y
 
-#     def editShipping(x):
-#         ShippingInfo=x
 
-#     def printorderhistory():
-#         print(OrderHistory)
 
-#     def updateOrderHistory():
-#         OrderHistory+1
+
 
 
 # class Inventory:
@@ -125,12 +223,12 @@ class Inventory:
     float Price = 0.00
     int Stock = 0
 
-    AddItem()
-    DeleteItem()
-    CheckPrice()
-    EditStock()
-    CheckStock()
-    SetCategory()
+    AddItem()::
+    DeleteItem():
+    CheckPrice():
+    EditStock():
+    CheckStock():
+    SetCategory():
 
 
 
