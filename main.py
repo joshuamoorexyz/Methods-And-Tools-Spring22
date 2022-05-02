@@ -189,29 +189,30 @@ class Inventory:
 
 
 
- def Delete_item():
- def AddItem(item, Category, Price, Stock):
-     query = 'INSERT INTO Inventory (item,Category,Price,Stock) VALUES (%s, %s, %s, %s)'
-     val = (item, Category, Price, Stoock)
-     cur.execute(query,val)
-     Inventory =cur.fetchone()
-     if Additem:
-         return True
-     else:
-         return False
+     def Delete_item():
+         def AddItem(item, Category, Price, Stock):
+             query = 'INSERT INTO Inventory (item,Category,Price,Stock) VALUES (%s, %s, %s, %s)'
+             val = (item, Category, Price, Stoock)
+             cur.execute(query,val)
+             Inventory =cur.fetchone()
+             if Additem:
+                 return True
+             else:
+                 return False
 
-     def delete_item():
-
-     def check_price():
-
-     def edit_stock():
-
-     def check_stock():
+        def delete_item():
 
 
-     def set_category():
+        def check_price():
+            
+        def edit_stock():
 
-     def set_category():
+        def check_stock():
+
+
+        def set_category():
+
+        def set_category():
 
 
 
