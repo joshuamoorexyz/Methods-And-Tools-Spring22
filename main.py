@@ -186,16 +186,13 @@ class Account:
 #     Price = 0.00
 #     Stock = 0
 
-<<<<<<< HEAD
-    def AddItem(item, Category, Price, Stock):
+#  def AddItem(item, Category, Price, Stock):
         
 
-    def Delete_item():
-=======
-#     def AddItem(item, Category, Price, Stock):
+# def Delete_item():
+# def AddItem(item, Category, Price, Stock):
 
 #     def delete_item():
->>>>>>> 85183dd8ed9e8077476a82e6ba2af035c6490b0c
 
 #     def check_price():
     
@@ -203,13 +200,11 @@ class Account:
 
 #     def check_stock():
     
-<<<<<<< HEAD
-    def set_category():
+    
+#     def set_category():
 
-=======
 #     def set_category():
         
->>>>>>> 85183dd8ed9e8077476a82e6ba2af035c6490b0c
 
 
 
