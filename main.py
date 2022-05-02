@@ -7,7 +7,7 @@ import mysql.connector
 import sys
 
 
-#hi josh this is a commit that i am sending you
+
 
 #driver code
 
@@ -47,26 +47,22 @@ cur = cnx.cursor()
 
 class Account:
 
-    def CreateAccount(Userid,Password,Name,Email,ShippingInfo,PaymentInfo):
+    def CreateAccount(Password, Name,Email,ShippingInfo,PaymentInfo):
 
-        query = 'INSERT INTO Account (UserId,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
-        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
+        cur.execute('INSERT INTO account (Password, Name,Email,ShippingInfo,OrderHistory,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)',(Password, Name,Email,ShippingInfo,0,PaymentInfo))
+        cnx.commit() # # we commit(save) the records to the table
 
-        #push to database
-        cur.execute(query,val)
+        #account =cur.execute('SELECT * FROM account WHERE Name = %s',("joeyflowey"))
 
-        account =cur.fetchone()
-        if account:
-            cnx.commit() # # we commit(save) the records to the table
-            print(cur.rowcount, "record(s) inserted.")
-            return True #return true if account created sucessful
-        else:
-            return False
+  
+        print(cur.rowcount, "record(s) inserted.")
+        return True #return true if account created sucessful
+      
 
 
     def EditAccount(Userid,Password,Name,Email,ShippingInfo,PaymentInfo):
 
-        query = 'INSERT INTO Account WHERE Userid = userid (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        query = 'INSERT INTO account WHERE Userid = userid (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
         val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
 
         #push to database
@@ -83,7 +79,7 @@ class Account:
 
     def DeleteAccount(Userid,Password,Name,Email,ShippingInfo,PaymentInfo):
 
-        query = 'INSERT INTO Account WHERE Userid = userid (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        query = 'INSERT INTO account WHERE Userid = userid (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
         val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
 
         #push to database
@@ -116,7 +112,7 @@ class Account:
     def logout(x,y):
 
 
-        query = 'INSERT INTO Account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        query = 'INSERT INTO account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
         val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
         cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
         # Fetch one record and return result
@@ -129,9 +125,9 @@ class Account:
 
 
     def AddOrderHistory():
-        query = 'INSERT INTO Account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        query = 'INSERT INTO account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
         val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
-        cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
+        cur.execute('SELECT * FROM account WHERE UserID = %s AND Password = %s', (x, y,))
         # Fetch one record and return result
         account = cur.fetchone()
         if account:
@@ -142,9 +138,9 @@ class Account:
 
 
     def ViewOrderHistory():
-        query = 'INSERT INTO Account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        query = 'INSERT INTO account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
         val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
-        cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
+        cur.execute('SELECT * FROM account WHERE UserID = %s AND Password = %s', (x, y,))
         # Fetch one record and return result
         account = cur.fetchone()
         if account:
@@ -154,9 +150,9 @@ class Account:
             return False
 
     def EditShiipingInfo():
-        query = 'INSERT INTO Account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        query = 'INSERT INTO account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
         val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
-        cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
+        cur.execute('SELECT * FROM account WHERE UserID = %s AND Password = %s', (x, y,))
         # Fetch one record and return result
         account = cur.fetchone()
         if account:
@@ -166,9 +162,9 @@ class Account:
             return False
 
     def EditPaymentInfo():
-        query = 'INSERT INTO Account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
+        query = 'INSERT INTO account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
         val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
-        cur.execute('SELECT * FROM Account WHERE UserID = %s AND Password = %s', (x, y,))
+        cur.execute('SELECT * FROM account WHERE UserID = %s AND Password = %s', (x, y,))
         # Fetch one record and return result
         account = cur.fetchone()
         if account:
@@ -180,30 +176,47 @@ class Account:
 
  
     
-# class Inventory:
-#     item = 0
-#     Category = ""
-#     Price = 0.00
-#     Stock = 0
+class Inventory:
+    def printinventoryelec():
+        cur.execute('SELECT * FROM Inventory WHERE Category = 1')
+        result = cur.fetchall()
+  
+# loop through the rows
+        for row in result:
+          print(row)
+          print("\n")
 
-#  def AddItem(item, Category, Price, Stock):
-        
+    def printinventorygarden():
+        cur.execute('SELECT * FROM Inventory WHERE Category = 2')
+        result = cur.fetchall()
+  
+# loop through the rows
+        for row in result:
+          print(row)
+          print("\n")
 
-# def Delete_item():
-# def AddItem(item, Category, Price, Stock):
 
-#     def delete_item():
+    def printinventoryhealth():
+        cur.execute('SELECT * FROM Inventory WHERE Category = 3')
+        result = cur.fetchall()
+  
+# loop through the rows
+        for row in result:
+          print(row)
+          print("\n")          
 
-#     def check_price():
+
+    # def AddItem(item, Category, Price, Stock):
+
+    # def delete_item():
+
+    # def check_price():
     
-#     def edit_stock():
+    # def edit_stock():
 
-#     def check_stock():
+    # def check_stock():
     
-    
-#     def set_category():
-
-#     def set_category():
+    # def set_category():
         
 
 
@@ -326,13 +339,8 @@ while(True):
 
             #check input
 
-            print("\nFirst Name")
+            print("\nName")
             firstname=input()
-
-            #check input
-            print("\nLast Name")
-            lastname=input()
-
             #check input
 
             print("\nEmail")
@@ -350,7 +358,7 @@ while(True):
 
 
             #call create account function with these inputs to store in the database
-            result=Account.__init__(newpassword, firstname+lastname, email, shipinfo, payment)
+            result=Account.CreateAccount(newpassword, firstname,email,shipinfo,payment)
 
             if(result==True):
                 print("\nAccount creation sucess")
@@ -381,7 +389,7 @@ while(True):
 
 
         print("\n\nEnter Choice:")
-        choice=int(input(choice))
+        choice=int(input())
 
         print("--------------------------------------------------------")
 
@@ -401,7 +409,7 @@ while(True):
 
 
             print("\n\nEnter Choice:")
-            choice1=input(choice1)
+            choice1=int(input())
         print("--------------------------------------------------------")
 
 
@@ -416,103 +424,41 @@ while(True):
             print("--------------------------------------------------------")
 
             print("\nElectronics")
-            print("\n\n1. Items")
-            print("\n2. Price")
-            print("\n3. Stock")
 
-            print("\n\nEnter Choice:")
-            choice2=int(input(choice2))
-
-        print("--------------------------------------------------------")
-
-                 #check input
-        if(choice2<1 or choice2>3):
-            print("Invalid Input")
-            exit()     
-
-        if(choice2==1):
-            print("--------------------------------------------------------")
-
-            #select all items where category is Electronics
-            print("here data")
-
-        if(choice2==2):
-            print("--------------------------------------------------------")
-
-            #Get all items price where category is Electronics
-            print("Here prices")
-
-        if(choice2==3):
-            print("--------------------------------------------------------")
-    
-            #get all stock from database where category is electronics
-            print("stuff")
+            #print all items in category Electronics (1)
+            Inventory.printinventoryelec()
 
 
-        if(chocie1==2):
+
+
+
+        if(choice1==2):
             print("--------------------------------------------------------")
 
             print("\nGarden")
-            print("\n\n1. Items")
-            print("\n2. Price")
-            print("\n3. Stock")
-
-            print("\n\nEnter Choice:")
-            choice2=int(input(choice2))
-            print("--------------------------------------------------------")
-
-
-                 #check input
-        if(choice2<1 or choice2>3):
-            print("Invalid Input")
-            exit()     
-
-        if(choice2==1):
-            print("--------------------------------------------------------")
-
-            #select all items where category is Electronics
-            print("here data")
-
-        if(choice2==2):
-            #Get all items price where category is Electronics
-            print("Here prices")
-
-        if(choice2==3):
-            print("--------------------------------------------------------")
-
-            #get all stock from database where category is electronics
-            print("stuff")
+            Inventory.printinventorygarden()
 
 
 
-        if(chocie1==3):
+
+
+        if(choice1==3):
             print("--------------------------------------------------------")
 
             print("\nHealth")
-            print("\n\n1. Items")
-            print("\n2. Price")
-            print("\n3. Stock")
+
 
             print("\n\nEnter Choice:")
-            choice2=int(input(choice2))
+            Inventory.printinventoryhealth()
+
+  
 
 
-                 #check input
-        if(choice2<1 or choice2>3):
-            print("Invalid Input")
-            exit()     
 
-        if(choice2==1):
-            #select all items where category is Electronics
-            print("here data")
 
-        if(choice2==2):
-            #Get all items price where category is Electronics
-            print("Here prices")
 
-        if(choice2==3):
-            #get all stock from database where category is electronics
-            print("stuff")
+
+
 
 
 
@@ -521,19 +467,39 @@ while(True):
 
         if(choice==2):
             print("\nCart Information")
-            print("\n\n1. Items in Cart")
-            print("\n2. Remove Item")
-            print("\n3. Checkout Items in Cart")
+            print("\n\n1. Add items to Cart")
+            print("\n\n2. Items in Cart")
+            print("\n3. Remove Item")
+            print("\n4. Checkout Items in Cart")
 
             print("\n\nEnter Choice:")
-            choice1=int(input(chooice1))
+            choice1=int(input())
 
 
             #check input
-        if(choice1<1 or choice1>3):
-            print("Invalid Input")
-            exit()   
+            if(choice1<1 or choice1>4):
+                print("Invalid Input")
+                exit()   
 
+
+
+      
+            if(choice1==1):
+                print("--------------------------------------------------------")
+                #call add item function
+
+
+            if(choice1==2):
+                print("--------------------------------------------------------")
+                #call show items function
+
+            if(choice1==3):
+                print("--------------------------------------------------------")
+                #call remove item function
+
+            if(choice1==4):
+                print("--------------------------------------------------------")
+                #call checkout items function
 
 
 
@@ -547,12 +513,41 @@ while(True):
             print("\n4. Delete Account")
 
             print("\n\nEnter Choice:")
-            choice1=int(input(chooice1))
+            choice1=int(input())
 
 
             #check input
-        if(choice1<1 or choice1>4):
-            print("Invalid Input")
-            exit()   
-# Close connection
-cnx.close()
+            if(choice1<1 or choice1>4):
+                print("Invalid Input")
+                exit()   
+
+            if(choice1==1):
+                print("--------------------------------------------------------")
+                #call update shipping info function
+
+
+            if(choice1==2):
+                print("--------------------------------------------------------")
+                #call update payment info function
+
+            if(choice1==3):
+                print("--------------------------------------------------------")
+                #call edit account function
+
+            if(choice1==4):
+                print("--------------------------------------------------------")
+                #call delete account function
+
+
+
+        if(choice==4):
+            print("--------------------------------------------------------")
+
+            print("\nExiting ...")
+            cnx.close() # Close connection
+            sys.exit(1)  
+            
+
+
+    
+
