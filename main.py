@@ -125,8 +125,9 @@ class Inventory:
     Price = 0.00
     Stock = 0
 
-    def AddItem():
+    def AddItem(item, Category, Price, Stock):
         
+
 
 
 
