@@ -21,6 +21,10 @@ print(cnx)
 # Get a cursor
 cur = cnx.cursor()
 
+
+
+
+
 #classes
 
 class Account:
@@ -178,6 +182,8 @@ class Inventory:
         idnumber=str(input())
 
         cur.execute('INSERT INTO methodsnew.ShoppingCart (Itemid,Price,Category) SELECT Itemid,Price,Stock FROM methodsnew.Inventory WHERE Itemid= %s',(idnumber,))
+
+        
 class ShoppingCart:    
     def AddItem():
         itemid=str(input())
