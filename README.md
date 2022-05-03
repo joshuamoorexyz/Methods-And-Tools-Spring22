@@ -6,4 +6,6 @@
 
 - In particular, this project serves as the big group project of the class, which uses mysql database and a python menu driven program for the frontend. Python was chosen due to the ease of the connector for mysql.
 
-- The programm basically keeps the tract of items, and enable user to buy items.
+- The programm is basically an e-commerce store that is run from the command line.
+- User can create account, or log in to their existing account.
+- The program can store the data even while the file isn't running.
