@@ -57,7 +57,7 @@ class Account:
 
     def DeleteAccount(Userid):
 
-        cur.execute('DELETE FROM account WHERE UserId = %s',(Userid))
+        cur.execute('DELETE FROM account WHERE UserId = %s',(Userid,))
         cnx.commit() # # we commit(save) the records to the table
 
 
@@ -84,28 +84,32 @@ class Account:
 
 
     def EditShiipingInfo(Userid):
-        query = 'INSERT INTO account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
-        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
-        cur.execute('SELECT * FROM account WHERE UserID = %s AND Password = %s', (x, y,))
-        # Fetch one record and return result
-        account = cur.fetchone()
-        if account:
-            return True
-            # Redirect to home page
-        else:
-            return False
+
+
+        #get new shipping info from the user
+        print("\nNew Shipping Info: ")
+        shipp=str(input())
+        cur.execute('UPDATE account SET ShippingInfo = %s WHERE UserID=%s', (shipp,Userid))
+        cnx.commit() # # we commit(save) the records to the table
+
 
     def EditPaymentInfo(Userid):
-        query = 'INSERT INTO account (Userid,Password, Name,Email,ShippingInfo,PaymentInfo) VALUES (%s, %s, %s, %s, %s, %s)'
-        val = (Userid,Password,Name,Email,ShippingInfo,PaymentInfo)
-        cur.execute('SELECT * FROM account WHERE UserID = %s AND Password = %s', (x, y,))
-        # Fetch one record and return result
-        account = cur.fetchone()
-        if account:
-            return True
-            # Redirect to home page
-        else:
-            return False
+
+
+        #get new shipping info from the user
+        print("\nNew Payment Info: ")
+        payy=str(input())
+        cur.execute('UPDATE account SET PaymentInfo = %s WHERE UserID=%s', (payy,Userid))
+        cnx.commit() # # we commit(save) the records to the table
+
+
+    def showaccountinfo():
+        Userid=str(input())
+        cur.execute('SELECT * FROM account WHERE UserID=%s', (Userid,))
+        result = cur.fetchone()
+        print(result)
+        
+
 
     
 class Inventory:
@@ -139,17 +143,10 @@ class Inventory:
 
 class ShoppingCart:    
     def AddItem():
-
-
-
-        #check that the item has more than zero stock associated in the Inventory table
-        #cur.execute('SELECT Stock FROM methodsnew.Inventory WHERE Itemid= %s',(item))
-        #stock=cur.fetchone()
-        #if stock >0:
-        #take item from Inventory table and add it to ShoppingCart table
         itemid=str(input())
-        print(itemid)
-        cur.execute('INSERT INTO methodsnew.ShoppingCart (Itemid,Price,Category) SELECT Itemid,Price,Stock FROM methodsnew.Inventory WHERE Itemid= {itemid}')
+        cur.execute('INSERT INTO methodsnew.ShoppingCart (Itemid,Price,Category) SELECT Itemid,Price,Stock FROM methodsnew.Inventory WHERE Itemid= %s',(itemid,))
+        cnx.commit() # # we commit(save) the records to the table
+
         # Fetch one record and return result
         #     account = cur.fetchone()
         #     if account:
@@ -181,28 +178,24 @@ class ShoppingCart:
 
 
     def gettotalforitemsincart():
-        cur.execute('SELECT SUM(Price) FROM ShoppingCart')
-        result=cur.fetchone()
-        return result
+        print(cur.execute('SELECT SUM(Price) FROM ShoppingCart'))
 
 
-    def deleteitemfromcart(itemid):
-        cur.execute('delete FROM ShoppingCart WHERE Itemid = %s',(itemid))
+    def deleteitemfromcart():
+        itemid=str(input())
+        cur.execute('delete FROM ShoppingCart WHERE Itemid = %s',(itemid,))
 
 
 
 
     def deleteallitemsfromcart():
-        cur.execute('delete * FROM ShoppingCart')
+        cur.execute('delete FROM ShoppingCart')
 
 
     
 
     def checkoutitemsincart():
-        print("\nTotal for all items currently in cart")
         print("\n---------------------------------------------")
-        total=ShoppingCart.gettotalforitemsincart()
-        print("\nTake {total} for the transaction.")
         ShoppingCart.deleteallitemsfromcart() #delete items from the cart
 
 #main loop for menu driven program
@@ -225,38 +218,38 @@ while(True):
         if(choice<1 or choice>3):
             print("Invalid Input")
             exit()
-        if (choice == string):
-             exit()
+        # if (choice == string):
+       
             
         #user login page
         if(choice==1):
             print("--------------------------------------------------------")
-        try = 3;
-            while(try >3):
-                try = try-1
-                username = input("Enter your UserID: ")
+        # try = 3;
+        #     while(try >3):
+        #         try = try-1
+            username = input("Enter your UserID: ")
                 #print("User Login")
                 #print("\n\n Enter UserID:")
                 #username=input()
 
                 #check input
-                userpassword = getpass("Enter the password: ")
+            userpassword = getpass("Enter the password: ")
                 #print("\n\n password")
                 #userpassword=input()
 
                 #check input
 
                 #check database to see if username and password are a match
-                result=Account.login(username,userpassword)
-                if(result==True):
-                    print("\nLogged in ..")
-                    loggedin=True
+            result=Account.login(username,userpassword)
+            if(result==True):
+                print("\nLogged in ..")
+                loggedin=True
 
-                if(result==False):
-                    print("\n UserID Or Pwd incorrect ...")
-                    print("You have %d valid attempts left" %(try))
-                    loggedin=False
-             while(try=0):
+            if(result==False):
+                print("\n UserID Or Pwd incorrect ...")
+            #         print("You have %d valid attempts left" %(try))
+            #         loggedin=False
+            #  while(try=0):
                 exit()
 
 
@@ -392,18 +385,18 @@ while(True):
             print("\nCart Information")
             print("\n\n1. Add items to Cart")
             print("\n\n2. Items in Cart")
-            print("\n3. Remove Item")
-            print("\n4. Checkout Items in Cart")
+            print("\n3. Total for items in Cart")
+            print("\n4. Remove Item")
+            print("\n5. Checkout Items in Cart")
 
             print("\n\nEnter Choice:")
             choice1=int(input())
 
 
             #check input
-            if(choice1<1 or choice1>4):
+            if(choice1<1 or choice1>5):
                 print("Invalid Input")
                 exit()   
-
 
 
       
@@ -438,15 +431,20 @@ while(True):
 
 
 
+            if(choice1==4):
+                print("--------------------------------------------------------")
+                #call checkout items function
+                total=ShoppingCart.gettotalforitemsincart()
+                print(total)
 
-            if(choice1==3):
+
+            if(choice1==4):
                 print("--------------------------------------------------------")
                 #call remove item function
                 print("Which itemID do you want to remove?")
-                inputuser=int(input())
-                ShoppingCart.deleteitemfromcart(inputuser)
+                ShoppingCart.deleteitemfromcart()
 
-            if(choice1==4):
+            if(choice1==5):
                 print("--------------------------------------------------------")
                 #call checkout items function
                 ShoppingCart.checkoutitemsincart()
@@ -455,10 +453,9 @@ while(True):
             #account
         if(choice==3):
             print("\n Account Information")
-
-            print("\n\n1. Update Shipping Info")
-            print("\n2. Update Payment Info")
-            print("\n3. Edit Account")
+            print("\n1. Show account Info")
+            print("\n2. Update Shipping Info")
+            print("\n3. Update Payment Info")
             print("\n4. Delete Account")
 
             print("\n\nEnter Choice:")
@@ -473,33 +470,28 @@ while(True):
             if(choice1==1):
                 print("--------------------------------------------------------")
                 #call update shipping info function
-                Account.EditShiipingInfo(username)
+                Account.showaccountinfo()
+
 
             if(choice1==2):
-                print("---------------- ----------------------------------------")
-                #call update payment info function
-                Account.EditPaymentInfo(username)
+                print("--------------------------------------------------------")
+                #call update shipping info function
+                Account.EditShiipingInfo(username)
+
 
             if(choice1==3):
                 print("--------------------------------------------------------")
-                #call edit account function
-                print("\nEnter the following info:")
-                print("\nNew Password:")
-                Password=str(input())
-                print("\nNew Name:")
-                Name=str(input())
-                print("\nNew Email:")
-                Email=str(input())
-                print("\nNew Shipping Info:")
-                ShippingInfo=str(input())
-                print("\nNew Payment Info:")
-                PaymentInfo=str(input())
-
-
-
-                Account.EditAccount(username,Password,Name,Email,ShippingInfo,PaymentInfo)
+                #call update shipping info function
+                Account.EditShiipingInfo(username)
 
             if(choice1==4):
+                print("--------------------------------------------------------")
+                #call update payment info function
+                Account.EditPaymentInfo(username)
+
+
+
+            if(choice1==5):
                 print("--------------------------------------------------------")
                 #call delete account function
                 Account.DeleteAccount(username)
