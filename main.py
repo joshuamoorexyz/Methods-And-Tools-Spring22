@@ -8,7 +8,7 @@ import sys
 from getpass import getpass
 
 #driver code
-# # Connect to server
+# # Connects to the server
 cnx = mysql.connector.connect(
     host="127.0.0.1",
     port=3306,
@@ -87,7 +87,7 @@ class Account:
     def EditShiipingInfo(Userid):
 
 
-        #get new shipping info from the user
+        #get new shipping information from the user
         print("\nNew Shipping Info: ")
         shipp=str(input())
         cur.execute('UPDATE account SET ShippingInfo = %s WHERE UserID=%s', (shipp,Userid))
