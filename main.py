@@ -75,9 +75,6 @@ class Account:
             return False
 
 
-            return False
-
-
 
 
 
@@ -109,8 +106,16 @@ class Account:
         result = cur.fetchone()
         print(result)
         
+    def updateorderhistory():
+        Userid=str(input())
+        cur.execute('SELECT OrderHistory FROM account WHERE UserID=%s', (Userid,))
+        result=cur.fetchone()
+        result=result+1
+        cur.execute('UPDATE account SET OrderHistory = %s WHERE UserID=%s', (result,Userid,))
 
-
+    def logout():
+        loggedin=False
+        return loggedin
     
 class Inventory:
     def printinventoryelec():
@@ -122,15 +127,40 @@ class Inventory:
           print(row)
           print("\n")
 
+        print("\nwould you like to add an item from this category to your cart? (Y/N)")
+        answer=str(input())
+        if(answer=="Y"):
+            print("Which item id?")
+
+            idnumber=str(input())
+
+            cur.execute('INSERT INTO methodsnew.ShoppingCart (Itemid,Price,Category) SELECT Itemid,Price,Stock FROM methodsnew.Inventory WHERE Itemid= %s',(idnumber,))
+
+
     def printinventorygarden():
         cur.execute('SELECT * FROM Inventory WHERE Category = 2')
         result = cur.fetchall()
+    def editstock():
+        print("\n Which item would you like to edit the stock of?:")
+        item=int(input())
+        print("\n How many of these items are in stock?")
+        stockinput=int(input())
+        cur.execute('UPDATE Inventory SET Stock = %s WHERE Itemid=%s', (stockinput,item,))
+        cnx.commit() # # we commit(save) the records to the table
+
   
 # loop through the rows
         for row in result:
           print(row)
           print("\n")
+        print("\nwould you like to add an item from this category to your cart? (Y/N)")
+        answer=chr(input())
 
+        print("\nWhich item id?")
+
+        idnumber=str(input())
+
+        cur.execute('INSERT INTO methodsnew.ShoppingCart (Itemid,Price,Category) SELECT Itemid,Price,Stock FROM methodsnew.Inventory WHERE Itemid= %s',(idnumber,))
 
     def printinventoryhealth():
         cur.execute('SELECT * FROM Inventory WHERE Category = 3')
@@ -140,7 +170,14 @@ class Inventory:
         for row in result:
           print(row)
           print("\n")          
+        print("\nwould you like to add an item from this category to your cart? (Y/N)")
+        answer=chr(input())
 
+        print("\nWhich item id?")
+
+        idnumber=str(input())
+
+        cur.execute('INSERT INTO methodsnew.ShoppingCart (Itemid,Price,Category) SELECT Itemid,Price,Stock FROM methodsnew.Inventory WHERE Itemid= %s',(idnumber,))
 class ShoppingCart:    
     def AddItem():
         itemid=str(input())
@@ -183,16 +220,17 @@ class ShoppingCart:
 
     def deleteitemfromcart():
         itemid=str(input())
+        ShoppingCart.printitems()
         cur.execute('delete FROM ShoppingCart WHERE Itemid = %s',(itemid,))
 
 
 
 
     def deleteallitemsfromcart():
+        ShoppingCart.printitems()
         cur.execute('delete FROM ShoppingCart')
 
 
-    
 
     def checkoutitemsincart():
         print("\n---------------------------------------------")
@@ -312,8 +350,10 @@ while(True):
         print("\nCLI SHOPPING")
         print("\n1. Categories")
         print("\n2. Cart Information")
-        print("\n3. Account")  
-        print("\n4. Exit Program")    
+        print("\n3. Account")
+        print("\n4. Edit Stock")
+        print("\n5. Logout User")    
+        print("\n6. Exit Program")    
 
 
         print("\n\nEnter Choice:")
@@ -323,7 +363,7 @@ while(True):
 
 
         #check input
-        if(choice<1 or choice>4):
+        if(choice<1 or choice>6):
             print("Invalid Input")
             exit() 
 
@@ -413,6 +453,11 @@ while(True):
           
 
                 ShoppingCart.AddItem()
+                print("\nWould you like to add this to your order history?(Y/N)")
+                answer=str(input())
+                if(answer=="Y"):
+                    Account.updateorderhistory()
+
 
                 
             if(choice1==2):
@@ -431,7 +476,7 @@ while(True):
 
 
 
-            if(choice1==4):
+            if(choice1==3):
                 print("--------------------------------------------------------")
                 #call checkout items function
                 total=ShoppingCart.gettotalforitemsincart()
@@ -497,8 +542,15 @@ while(True):
                 Account.DeleteAccount(username)
 
 
-
         if(choice==4):
+            print("--------------------------------------------------------")
+            Inventory.editstock()
+
+        if(choice==5):
+            print("--------------------------------------------------------")
+            #Account.logout()
+            loggedin=False
+        if(choice==6):
             print("--------------------------------------------------------")
 
             print("\nExiting ...")
