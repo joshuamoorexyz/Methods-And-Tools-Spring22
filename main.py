@@ -278,8 +278,7 @@ while(True):
 
                 #check input
             userpassword = getpass("Enter the password: ")
-                #print("\n\n password")
-                #userpassword=input()
+                
 
                 #check input
 
